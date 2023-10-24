@@ -51,3 +51,7 @@ class ParrotType:
     EUROPEAN = EuropeanParrot
     AFRICAN = AfricanParrot
     NORWEGIAN_BLUE = NorwegianBlueParrot
+
+    @staticmethod
+    def make(type_of_parrot, number_of_coconuts, voltage, nailed):
+        return type_of_parrot(type_of_parrot, number_of_coconuts, voltage, nailed)
