@@ -6,15 +6,12 @@ class ParrotType(Enum):
     AFRICAN = 2
     NORWEGIAN_BLUE = 3
 
-    @staticmethod
-    def european(number_of_coconuts, voltage, nailed):
-        return EuropeanParrot(ParrotType.EUROPEAN, number_of_coconuts, voltage, nailed)
-    @staticmethod
-    def african(number_of_coconuts, voltage, nailed):
-        return AfricanParrot(ParrotType.AFRICAN, number_of_coconuts, voltage, nailed)
-    @staticmethod
-    def norwegian_blue(number_of_coconuts, voltage, nailed):
-        return NorwegianBlueParrot(ParrotType.NORWEGIAN_BLUE, number_of_coconuts, voltage, nailed)
+def european(number_of_coconuts, voltage, nailed):
+    return EuropeanParrot(ParrotType.EUROPEAN, number_of_coconuts, voltage, nailed)
+def african(number_of_coconuts, voltage, nailed):
+    return AfricanParrot(ParrotType.AFRICAN, number_of_coconuts, voltage, nailed)
+def norwegian_blue(number_of_coconuts, voltage, nailed):
+    return NorwegianBlueParrot(ParrotType.NORWEGIAN_BLUE, number_of_coconuts, voltage, nailed)
 
 class Parrot:
 
@@ -26,11 +23,11 @@ class Parrot:
 
     def get_subtype(self):
         if self._type == ParrotType.EUROPEAN:
-            return ParrotType.european(self._number_of_coconuts, self._voltage, self._nailed)
+            return european(self._number_of_coconuts, self._voltage, self._nailed)
         if self._type == ParrotType.AFRICAN:
-            return ParrotType.african(self._number_of_coconuts, self._voltage, self._nailed)
+            return african(self._number_of_coconuts, self._voltage, self._nailed)
         if self._type == ParrotType.NORWEGIAN_BLUE:
-            return ParrotType.norwegian_blue(self._number_of_coconuts, self._voltage, self._nailed)
+            return norwegian_blue(self._number_of_coconuts, self._voltage, self._nailed)
 
         raise ValueError("should be unreachable")
 
