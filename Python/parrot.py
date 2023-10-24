@@ -6,26 +6,18 @@ class Parrot:
         self._voltage = voltage
         self._nailed = nailed
 
-    def get_subtype(self):
-        return self._type(self._type, self._number_of_coconuts, self._voltage, self._nailed)
-
-    def speed(self):
-        return self.get_subtype().speed()
-
-    def cry(self):
-        return self.get_subtype().cry()
-
-    def _base_speed(self):
-        return 12.0
-
-
-class EuropeanParrot(Parrot):
     def speed(self):
         return self._base_speed()
 
     def cry(self):
         return "Sqoork!"
 
+    def _base_speed(self):
+        return 12.0
+
+
+class EuropeanParrot(Parrot):
+    pass
 
 class AfricanParrot(Parrot):
     def speed(self):
