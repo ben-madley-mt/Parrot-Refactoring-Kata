@@ -1,3 +1,6 @@
+from enum import Enum
+
+
 class Parrot:
 
     def __init__(self, number_of_coconuts, voltage, nailed):
@@ -46,11 +49,19 @@ class NorwegianBlueParrot(Parrot):
         return min([24.0, voltage * self._base_speed()])
 
 
-class ParrotType:
-    EUROPEAN = EuropeanParrot
-    AFRICAN = AfricanParrot
-    NORWEGIAN_BLUE = NorwegianBlueParrot
+class ParrotType(Enum):
+    EUROPEAN = 1
+    AFRICAN = 2
+    NORWEGIAN_BLUE = 3
 
     @staticmethod
     def make(type_of_parrot, number_of_coconuts, voltage, nailed):
-        return type_of_parrot(number_of_coconuts, voltage, nailed)
+        if type_of_parrot == ParrotType.EUROPEAN:
+            return EuropeanParrot(number_of_coconuts, voltage, nailed)
+        if type_of_parrot == ParrotType.AFRICAN:
+            return AfricanParrot(number_of_coconuts, voltage, nailed)
+        if type_of_parrot == ParrotType.NORWEGIAN_BLUE:
+            return NorwegianBlueParrot(number_of_coconuts, voltage, nailed)
+
+        raise ValueError("should be unreachable")
+
