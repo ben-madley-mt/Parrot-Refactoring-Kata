@@ -2,12 +2,6 @@ from enum import Enum
 
 
 class Parrot:
-
-    def __init__(self, number_of_coconuts, voltage, nailed):
-        self._number_of_coconuts = number_of_coconuts
-        self._voltage = voltage
-        self._nailed = nailed
-
     def speed(self):
         return self._base_speed()
 
@@ -19,16 +13,13 @@ class Parrot:
 
 
 class EuropeanParrot(Parrot):
-    def __init__(self, number_of_coconuts, voltage, nailed):
-        self._number_of_coconuts = number_of_coconuts
-        self._voltage = voltage
-        self._nailed = nailed
+    def __init__(self):
+        pass
+
 
 class AfricanParrot(Parrot):
-    def __init__(self, number_of_coconuts, voltage, nailed):
+    def __init__(self, number_of_coconuts):
         self._number_of_coconuts = number_of_coconuts
-        self._voltage = voltage
-        self._nailed = nailed
 
     def speed(self):
         return max(0, self._base_speed() - self._load_factor() * self._number_of_coconuts)
@@ -41,8 +32,7 @@ class AfricanParrot(Parrot):
 
 
 class NorwegianBlueParrot(Parrot):
-    def __init__(self, number_of_coconuts, voltage, nailed):
-        self._number_of_coconuts = number_of_coconuts
+    def __init__(self, voltage, nailed):
         self._voltage = voltage
         self._nailed = nailed
 
@@ -70,11 +60,10 @@ class ParrotType(Enum):
     @staticmethod
     def make(type_of_parrot, number_of_coconuts, voltage, nailed):
         if type_of_parrot == ParrotType.EUROPEAN:
-            return EuropeanParrot(number_of_coconuts, voltage, nailed)
+            return EuropeanParrot()
         if type_of_parrot == ParrotType.AFRICAN:
-            return AfricanParrot(number_of_coconuts, voltage, nailed)
+            return AfricanParrot(number_of_coconuts)
         if type_of_parrot == ParrotType.NORWEGIAN_BLUE:
-            return NorwegianBlueParrot(number_of_coconuts, voltage, nailed)
+            return NorwegianBlueParrot(voltage, nailed)
 
         raise ValueError("should be unreachable")
-
