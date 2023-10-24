@@ -6,12 +6,6 @@ class ParrotType(Enum):
     AFRICAN = 2
     NORWEGIAN_BLUE = 3
 
-def european(number_of_coconuts, voltage, nailed):
-    return EuropeanParrot(ParrotType.EUROPEAN, number_of_coconuts, voltage, nailed)
-def african(number_of_coconuts, voltage, nailed):
-    return AfricanParrot(ParrotType.AFRICAN, number_of_coconuts, voltage, nailed)
-def norwegian_blue(number_of_coconuts, voltage, nailed):
-    return NorwegianBlueParrot(ParrotType.NORWEGIAN_BLUE, number_of_coconuts, voltage, nailed)
 
 class Parrot:
 
@@ -23,11 +17,11 @@ class Parrot:
 
     def get_subtype(self):
         if self._type == ParrotType.EUROPEAN:
-            return european(self._number_of_coconuts, self._voltage, self._nailed)
+            return EuropeanParrot(ParrotType.EUROPEAN, self._number_of_coconuts, self._voltage, self._nailed)
         if self._type == ParrotType.AFRICAN:
-            return african(self._number_of_coconuts, self._voltage, self._nailed)
+            return AfricanParrot(ParrotType.AFRICAN, self._number_of_coconuts, self._voltage, self._nailed)
         if self._type == ParrotType.NORWEGIAN_BLUE:
-            return norwegian_blue(self._number_of_coconuts, self._voltage, self._nailed)
+            return NorwegianBlueParrot(ParrotType.NORWEGIAN_BLUE, self._number_of_coconuts, self._voltage, self._nailed)
 
         raise ValueError("should be unreachable")
 
