@@ -9,6 +9,12 @@ class ParrotType(Enum):
     @staticmethod
     def european(number_of_coconuts, voltage, nailed):
         return EuropeanParrot(ParrotType.EUROPEAN, number_of_coconuts, voltage, nailed)
+    @staticmethod
+    def african(number_of_coconuts, voltage, nailed):
+        return AfricanParrot(ParrotType.AFRICAN, number_of_coconuts, voltage, nailed)
+    @staticmethod
+    def norwegian_blue(number_of_coconuts, voltage, nailed):
+        return NorwegianBlueParrot(ParrotType.NORWEGIAN_BLUE, number_of_coconuts, voltage, nailed)
 
 class Parrot:
 
@@ -22,12 +28,9 @@ class Parrot:
         if self._type == ParrotType.EUROPEAN:
             return ParrotType.european(self._number_of_coconuts, self._voltage, self._nailed).speed()
         if self._type == ParrotType.AFRICAN:
-            return max(0, self._base_speed() - self._load_factor() * self._number_of_coconuts)
+            return ParrotType.african(self._number_of_coconuts, self._voltage, self._nailed).speed()
         if self._type == ParrotType.NORWEGIAN_BLUE:
-            if self._nailed:
-                return 0
-            else:
-                return self._compute_base_speed_for_voltage(self._voltage)
+            return ParrotType.norwegian_blue(self._number_of_coconuts, self._voltage, self._nailed).speed()
 
         raise ValueError("should be unreachable")
 
@@ -35,12 +38,9 @@ class Parrot:
         if self._type == ParrotType.EUROPEAN:
             return ParrotType.european(self._number_of_coconuts, self._voltage, self._nailed).cry()
         if self._type == ParrotType.AFRICAN:
-            return "Sqaark!"
+            return ParrotType.african(self._number_of_coconuts, self._voltage, self._nailed).cry()
         if self._type == ParrotType.NORWEGIAN_BLUE:
-            if self._voltage > 0:
-                return "Bzzzzzz"
-            else:
-                return "..."
+            return ParrotType.norwegian_blue(self._number_of_coconuts, self._voltage, self._nailed).cry()
 
         raise ValueError("should be unreachable")
 
@@ -60,3 +60,25 @@ class EuropeanParrot(Parrot):
 
     def cry(self):
         return "Sqoork!"
+
+
+class AfricanParrot(Parrot):
+    def speed(self):
+        return max(0, self._base_speed() - self._load_factor() * self._number_of_coconuts)
+
+    def cry(self):
+        return "Sqaark!"
+
+
+class NorwegianBlueParrot(Parrot):
+    def speed(self):
+        if self._nailed:
+            return 0
+        else:
+            return self._compute_base_speed_for_voltage(self._voltage)
+
+    def cry(self):
+        if self._voltage > 0:
+            return "Bzzzzzz"
+        else:
+            return "..."
