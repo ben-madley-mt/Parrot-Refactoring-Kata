@@ -15,12 +15,6 @@ class Parrot:
     def cry(self):
         return self.get_subtype().cry()
 
-    def _compute_base_speed_for_voltage(self, voltage):
-        return min([24.0, voltage * self._base_speed()])
-
-    def _load_factor(self):
-        return 9.0
-
     def _base_speed(self):
         return 12.0
 
@@ -40,6 +34,9 @@ class AfricanParrot(Parrot):
     def cry(self):
         return "Sqaark!"
 
+    def _load_factor(self):
+        return 9.0
+
 
 class NorwegianBlueParrot(Parrot):
     def speed(self):
@@ -53,6 +50,9 @@ class NorwegianBlueParrot(Parrot):
             return "Bzzzzzz"
         else:
             return "..."
+
+    def _compute_base_speed_for_voltage(self, voltage):
+        return min([24.0, voltage * self._base_speed()])
 
 
 class ParrotType:
