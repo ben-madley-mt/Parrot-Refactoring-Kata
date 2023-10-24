@@ -24,25 +24,22 @@ class Parrot:
         self._voltage = voltage
         self._nailed = nailed
 
-    def speed(self):
+    def get_subtype(self):
         if self._type == ParrotType.EUROPEAN:
-            return ParrotType.european(self._number_of_coconuts, self._voltage, self._nailed).speed()
+            return ParrotType.european(self._number_of_coconuts, self._voltage, self._nailed)
         if self._type == ParrotType.AFRICAN:
-            return ParrotType.african(self._number_of_coconuts, self._voltage, self._nailed).speed()
+            return ParrotType.african(self._number_of_coconuts, self._voltage, self._nailed)
         if self._type == ParrotType.NORWEGIAN_BLUE:
-            return ParrotType.norwegian_blue(self._number_of_coconuts, self._voltage, self._nailed).speed()
+            return ParrotType.norwegian_blue(self._number_of_coconuts, self._voltage, self._nailed)
 
         raise ValueError("should be unreachable")
+
+    def speed(self):
+        return self.get_subtype().speed()
 
     def cry(self):
-        if self._type == ParrotType.EUROPEAN:
-            return ParrotType.european(self._number_of_coconuts, self._voltage, self._nailed).cry()
-        if self._type == ParrotType.AFRICAN:
-            return ParrotType.african(self._number_of_coconuts, self._voltage, self._nailed).cry()
-        if self._type == ParrotType.NORWEGIAN_BLUE:
-            return ParrotType.norwegian_blue(self._number_of_coconuts, self._voltage, self._nailed).cry()
+        return self.get_subtype().cry()
 
-        raise ValueError("should be unreachable")
 
     def _compute_base_speed_for_voltage(self, voltage):
         return min([24.0, voltage * self._base_speed()])
