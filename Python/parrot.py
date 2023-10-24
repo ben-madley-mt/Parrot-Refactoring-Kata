@@ -1,7 +1,4 @@
-from enum import Enum
-
-
-class ParrotType(Enum):
+class ParrotType:
     EUROPEAN = 1
     AFRICAN = 2
     NORWEGIAN_BLUE = 3
