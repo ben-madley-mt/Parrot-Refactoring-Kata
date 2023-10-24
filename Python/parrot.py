@@ -1,9 +1,3 @@
-class ParrotType:
-    EUROPEAN = 1
-    AFRICAN = 2
-    NORWEGIAN_BLUE = 3
-
-
 class Parrot:
 
     def __init__(self, type_of_parrot, number_of_coconuts, voltage, nailed):
@@ -13,21 +7,13 @@ class Parrot:
         self._nailed = nailed
 
     def get_subtype(self):
-        if self._type == ParrotType.EUROPEAN:
-            return EuropeanParrot(ParrotType.EUROPEAN, self._number_of_coconuts, self._voltage, self._nailed)
-        if self._type == ParrotType.AFRICAN:
-            return AfricanParrot(ParrotType.AFRICAN, self._number_of_coconuts, self._voltage, self._nailed)
-        if self._type == ParrotType.NORWEGIAN_BLUE:
-            return NorwegianBlueParrot(ParrotType.NORWEGIAN_BLUE, self._number_of_coconuts, self._voltage, self._nailed)
-
-        raise ValueError("should be unreachable")
+        return self._type(self._type, self._number_of_coconuts, self._voltage, self._nailed)
 
     def speed(self):
         return self.get_subtype().speed()
 
     def cry(self):
         return self.get_subtype().cry()
-
 
     def _compute_base_speed_for_voltage(self, voltage):
         return min([24.0, voltage * self._base_speed()])
@@ -67,3 +53,9 @@ class NorwegianBlueParrot(Parrot):
             return "Bzzzzzz"
         else:
             return "..."
+
+
+class ParrotType:
+    EUROPEAN = EuropeanParrot
+    AFRICAN = AfricanParrot
+    NORWEGIAN_BLUE = NorwegianBlueParrot
