@@ -1,7 +1,6 @@
 class Parrot:
 
-    def __init__(self, type_of_parrot, number_of_coconuts, voltage, nailed):
-        self._type = type_of_parrot
+    def __init__(self, number_of_coconuts, voltage, nailed):
         self._number_of_coconuts = number_of_coconuts
         self._voltage = voltage
         self._nailed = nailed
@@ -54,4 +53,4 @@ class ParrotType:
 
     @staticmethod
     def make(type_of_parrot, number_of_coconuts, voltage, nailed):
-        return type_of_parrot(type_of_parrot, number_of_coconuts, voltage, nailed)
+        return type_of_parrot(number_of_coconuts, voltage, nailed)
